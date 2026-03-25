@@ -6,7 +6,7 @@ export const  messageModel = sequelize.define('Messages',{
     id: {
            allowNull: false,
            primaryKey: true,
-           type: DataTypes.INTEGER,
+           type: DataTypes.STRING,
          },
          room_id: {
            type: DataTypes.STRING,

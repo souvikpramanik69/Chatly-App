@@ -40,5 +40,9 @@ export const roomMemberModel = sequelize.define(
         fields: ["room_id"],
       },
     ],
+    createdAt:false,
+    updatedAt:false
+    
   },
+  
 );

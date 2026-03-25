@@ -5,7 +5,7 @@ import { ApiResponse } from "../res/ApiResponse";
 export const userController = async(req:Request,res:Response) => {
 try{
    const data = await getAllUserService(req);
-   return res.status(Number(data?.payload.status)).json(data);
+   return res.status(data?.payload?.status).json(data);
 }catch(err){
   return res.status(500).json(ApiResponse({
     message:String(err),
