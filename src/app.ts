@@ -4,6 +4,7 @@ import router from "./routes/root.route";
 import './config/dbConfig'
 import morgan from "morgan";
 import { userRouter } from "./routes/user.route";
+import { authRouter } from "./routes/auth.route";
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(morgan('dev'));
 //Routers --- 
 app.use(router);
 app.use(userRouter);
+app.use(authRouter);
 
 
 export default app;
