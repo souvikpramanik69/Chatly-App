@@ -1,21 +1,22 @@
 import { Request } from "express";
 import { userModel } from "../models/user";
 import { ApiResponse } from "../res/ApiResponse";
-import { messageModel } from "../models/Message";
-import { roomModel } from "../models/room";
 import { Op } from "sequelize";
 
 export const getAllUserService = async (req: Request) => {
   try {
-    const { remove_user_id } = req.query;
+
+    //Unwanted user id because i want to remove my name from my contact list by souvik
+    const { unwanted_user_id } = req.query;
+    const where: any = {}
+    if (unwanted_user_id) {
+      where.id = {
+        [Op.ne]: unwanted_user_id
+      }
+    }
 
     const { count, rows } = await userModel.findAndCountAll({
-      include: [roomModel],
-      where: {
-        id: {
-          [Op.ne]: remove_user_id,
-        },
-      },
+    where: where,
     });
 
     return ApiResponse({

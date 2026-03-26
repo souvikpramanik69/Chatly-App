@@ -25,6 +25,7 @@ export const roomMemberModel = sequelize.define(
     joined_at: {
       allowNull: false,
       type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
   },
   {

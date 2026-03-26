@@ -6,20 +6,24 @@ import { userModel } from "./user";
 
 export const applyAssociations = () => {
   // Many-to-Many (Users ↔ Rooms)
-  userModel.belongsToMany(roomModel, {
-    through: roomMemberModel,
-    foreignKey: 'user_id',
-  });
+roomModel.belongsToMany(userModel, {
+  through: roomMemberModel,
+  foreignKey: "room_id",
+  otherKey: "user_id",
+  as: "users"
+});
 
-  roomModel.belongsToMany(userModel, {
-    through: roomMemberModel,
-    foreignKey: 'room_id',
-  });
+userModel.belongsToMany(roomModel, {
+  through: roomMemberModel,
+  foreignKey: "user_id",
+  otherKey: "room_id",
+  as: "rooms"
+});
 
   // Room → Messages
   roomModel.hasMany(messageModel, {
     foreignKey: 'room_id',
-  });
+  }); 
 
   messageModel.belongsTo(roomModel, {
     foreignKey: 'room_id',

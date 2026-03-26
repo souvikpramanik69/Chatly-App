@@ -7,6 +7,13 @@ export const loginService = async(req:Request) =>{
     try{
         const {email,password} = req.body;
         const data = await userModel.findOne({where:{email:email,password:password}})
+        if(data == null){
+      return ApiResponse({
+            message:"User doesn't exist",
+            status:404,
+            success:false,
+        })
+        }
         return ApiResponse({
             message:"User logged in successfully",
             status:200,
