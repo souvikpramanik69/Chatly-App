@@ -36,3 +36,28 @@ export const getAllUserService = async (req: Request) => {
     });
   }
 };
+
+export const getUserProfile = async (req: Request) => {
+  try {
+     const userData = req?.user;
+     if(!userData){
+      return ApiResponse({
+        message: "User profile not found",
+        status: 404,
+        success: true,
+      });
+     }
+    return ApiResponse({
+      message: "Users fetched successfully",
+      status: 200,
+      success: true,
+      data: userData,
+    });
+  } catch (err) {
+    return ApiResponse({
+      message: String(err),
+      status: 500,
+      success: true,
+    });
+  }
+};

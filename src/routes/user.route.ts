@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { userController } from "../controllers/user.controller";
+import { userController,userProfileController } from "../controllers/user.controller";
+import { jwtMiddleware } from "../middlewares/jwt.middleware";
 
 export const userRouter = Router();
 
-userRouter.get("/users",userController);
+userRouter.get("/users",jwtMiddleware,userController);
+userRouter.get("/profile",jwtMiddleware,userProfileController);
