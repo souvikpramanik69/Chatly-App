@@ -5,8 +5,6 @@ import { SocketHanlderParamTypes } from "../../types/scoketType";
 export const messageHandler = ({ io, socket }: SocketHanlderParamTypes) => {
   socket.on("send-message", async (payload, cb) => {
     const roomId = socket?.data?.roomId;
-
-    console.log("New Messsaghe ", payload);
     const { message, roomDetails, typing, userId } = payload;
     console.log("Payload ", payload);
     if (message && roomDetails && userId) {
@@ -27,5 +25,9 @@ export const messageHandler = ({ io, socket }: SocketHanlderParamTypes) => {
 
     socket.to(roomId).emit("receive_message", data);
     // cb({ status: 200, data: message });
+  });
+
+  socket.on("new-room-create", async (payload) => {
+    socket.emit("new-room-created", payload);
   });
 };

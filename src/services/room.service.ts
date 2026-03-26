@@ -24,7 +24,6 @@ export const addRoomService = async (req: Request) => {
       });
     }
 
-
     const [room] = await roomModel.findOrCreate({
       where: { id: roomId },
       defaults: {
@@ -38,8 +37,8 @@ export const addRoomService = async (req: Request) => {
     // 2. add members
     await roomMemberModel.bulkCreate(
       [
-        { id:v4(),room_id: roomId, user_id: senderId },
-        { id:v4(),room_id: roomId, user_id: receiverId },
+        { id: v4(), room_id: roomId, user_id: senderId },
+        { id: v4(), room_id: roomId, user_id: receiverId },
       ],
       { ignoreDuplicates: true },
     );
@@ -49,31 +48,28 @@ export const addRoomService = async (req: Request) => {
       where: { id: roomId },
       include: [
         {
-          model:userModel,
+          model: userModel,
           as: "users",
-          attributes: ["id", "firstName",'lastName'], // adjust fields
+          attributes: ["id", "firstName", "lastName"], // adjust fields
           through: {
-            attributes: [] // hide roomMember table
-          }
-        }
-      ]
+            attributes: [], // hide roomMember table
+          },
+        },
+      ],
     });
-        return ApiResponse({
-        message: "Room has been created successfully",
-        status: 200,
-        success: true,
-        data:result
-      });
-  } 
-  catch (err) {
-
-       return ApiResponse({
-        message: String(err),
-        status: 500,
-        success: false,
-      });
-
-    }
+    return ApiResponse({
+      message: "Room has been created successfully",
+      status: 200,
+      success: true,
+      data: result,
+    });
+  } catch (err) {
+    return ApiResponse({
+      message: String(err),
+      status: 500,
+      success: false,
+    });
+  }
 };
 
 export const getAllRooms = async (req: Request) => {
@@ -85,32 +81,24 @@ export const getAllRooms = async (req: Request) => {
         {
           model: userModel,
           as: "users",
-          attributes: ["id", "firstName",'lastName'], // adjust fields
-          where: user_id
-            ? {
-                id: {
-                  [Op.ne]: user_id
-                }
-              }
-            : undefined,
-          through: {
-            attributes: [] // hide roomMember table
-          }
-        }
-      ]
+          attributes: ["id", "firstName", "lastName"],
+          through: { attributes: [] },
+        },
+      ],
+      distinct: true,
     });
 
     return ApiResponse({
       message: "Rooms fetched successfully",
       status: 200,
       success: true,
-      data
+      data,
     });
   } catch (err) {
     return ApiResponse({
       message: String(err),
       status: 500,
-      success: false
+      success: false,
     });
   }
 };
