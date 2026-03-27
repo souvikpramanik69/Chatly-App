@@ -6,7 +6,7 @@ import { socketMiddleware } from './middlewares/socket.middleware';
 import { connectionHandler } from './sockets/handlers/connection.handler';
 const server = http.createServer(app);
 require('dotenv').config()
-const port  = process.env.SERVER_PORT
+const port  = process.env.SERVER_PORT || 8001
 
 export const io = new Server(server, {
     cors: {
