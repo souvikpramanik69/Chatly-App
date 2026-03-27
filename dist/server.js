@@ -7,7 +7,7 @@ exports.io = void 0;
 const http_1 = __importDefault(require("http"));
 const socket_io_1 = require("socket.io");
 const app_1 = __importDefault(require("./app"));
-require("./models/index.ts");
+require("./models");
 const socket_middleware_1 = require("./middlewares/socket.middleware");
 const connection_handler_1 = require("./sockets/handlers/connection.handler");
 const server = http_1.default.createServer(app_1.default);

@@ -1,7 +1,7 @@
 import http from 'http'
 import { Server } from 'socket.io';
 import app from './app';
-import './models/index.ts'
+import './models'
 import { socketMiddleware } from './middlewares/socket.middleware';
 import { connectionHandler } from './sockets/handlers/connection.handler';
 const server = http.createServer(app);
