@@ -1,11 +1,15 @@
 'use strict';
 
+const { v4 } = require('uuid');
+
+
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
     const users = [
       {
-        id: 1,
+        id: v4(),
         firstName: 'Amit',
         lastName: 'Sharma',
         email: 'amit.sharma@example.com',
@@ -14,7 +18,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 2,
+        id: v4(),
         firstName: 'Priya',
         lastName: 'Verma',
         email: 'priya.verma@example.com',
@@ -23,7 +27,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 3,
+        id: v4(),
         firstName: 'Rahul',
         lastName: 'Yadav',
         email: 'rahul.yadav@example.com',
@@ -32,7 +36,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 4,
+        id: v4(),
         firstName: 'Sneha',
         lastName: 'Iyer',
         email: 'sneha.iyer@example.com',
@@ -41,7 +45,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 5,
+        id: v4(),
         firstName: 'Arjun',
         lastName: 'Reddy',
         email: 'arjun.reddy@example.com',
@@ -50,7 +54,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 6,
+        id: v4(),
         firstName: 'Neha',
         lastName: 'Gupta',
         email: 'neha.gupta@example.com',
@@ -59,7 +63,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 7,
+        id: v4(),
         firstName: 'Vikram',
         lastName: 'Singh',
         email: 'vikram.singh@example.com',
@@ -68,7 +72,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 8,
+        id: v4(),
         firstName: 'Anjali',
         lastName: 'Mehta',
         email: 'anjali.mehta@example.com',
@@ -77,7 +81,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 9,
+        id: v4(),
         firstName: 'Karan',
         lastName: 'Patel',
         email: 'karan.patel@example.com',
@@ -86,7 +90,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 10,
+        id: v4(),
         firstName: 'Pooja',
         lastName: 'Nair',
         email: 'pooja.nair@example.com',
@@ -95,7 +99,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 11,
+        id: v4(),
         firstName: 'Rohit',
         lastName: 'Das',
         email: 'rohit.das@example.com',
@@ -104,7 +108,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 12,
+        id: v4(),
         firstName: 'Meera',
         lastName: 'Kulkarni',
         email: 'meera.kulkarni@example.com',
@@ -113,7 +117,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 13,
+        id: v4(),
         firstName: 'Suresh',
         lastName: 'Pillai',
         email: 'suresh.pillai@example.com',
@@ -122,7 +126,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 14,
+        id: v4(),
         firstName: 'Kavita',
         lastName: 'Joshi',
         email: 'kavita.joshi@example.com',
@@ -131,7 +135,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 15,
+        id: v4(),
         firstName: 'Deepak',
         lastName: 'Chatterjee',
         email: 'deepak.chatterjee@example.com',
@@ -140,7 +144,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 16,
+        id: v4(),
         firstName: 'Swati',
         lastName: 'Bose',
         email: 'swati.bose@example.com',
@@ -149,7 +153,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 17,
+        id: v4(),
         firstName: 'Manish',
         lastName: 'Agarwal',
         email: 'manish.agarwal@example.com',
@@ -158,7 +162,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 18,
+        id: v4(),
         firstName: 'Ritu',
         lastName: 'Saxena',
         email: 'ritu.saxena@example.com',
@@ -167,7 +171,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 19,
+        id: v4(),
         firstName: 'Nikhil',
         lastName: 'Mishra',
         email: 'nikhil.mishra@example.com',
@@ -176,7 +180,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 20,
+        id: v4(),
         firstName: 'Ayesha',
         lastName: 'Khan',
         email: 'ayesha.khan@example.com',
@@ -190,10 +194,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Users', {
-      id: {
-        [Sequelize.Op.in]: Array.from({ length: 20 }, (_, i) => i + 1)
-      }
-    }, {});
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };
