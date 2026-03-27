@@ -10,13 +10,14 @@ const app_1 = __importDefault(require("./app"));
 require("./models");
 const socket_middleware_1 = require("./middlewares/socket.middleware");
 const connection_handler_1 = require("./sockets/handlers/connection.handler");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const server = http_1.default.createServer(app_1.default);
-require('dotenv').config();
-const port = process.env.SERVER_PORT;
+// Use Render-assigned port first
+const PORT = process.env.PORT || process.env.SERVER_PORT || 8001;
 exports.io = new socket_io_1.Server(server, {
     cors: {
         origin: '*',
-        // methods: ['GET', 'POST']
     }
 });
 (0, socket_middleware_1.socketMiddleware)();
@@ -26,7 +27,7 @@ exports.io.on("connection", (socket) => {
         console.log("User disconnected:", socket.id);
     });
 });
-server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 //# sourceMappingURL=server.js.map
